@@ -38,15 +38,16 @@ function Header() {
                 메뉴를 고르세요
               </SheetDescription>
             </SheetHeader>
-            <div className="grid gap-6 px-6 py-2">
-              <Button className="font-semibold">출입 기록 DB</Button>
-              <Button className="font-semibold">차량 DB</Button>
-              <Button className="font-semibold">사람 DB</Button>
+            <div className="grid gap-4 px-6 py-2">
+              <Button className="h-12 font-semibold">차량 번호 검색</Button>
+              <Button className="h-12 font-semibold">출입 기록 DB</Button>
+              <Button className="h-12 font-semibold">차량 DB</Button>
+              <Button className="h-12 font-semibold">사람 DB</Button>
             </div>
           </div>
           <SheetFooter className="p-4 border-t">
             <SheetClose asChild>
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full h-12">
                 닫기
               </Button>
             </SheetClose>

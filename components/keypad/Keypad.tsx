@@ -33,7 +33,7 @@ export function Keypad() {
               type="text"
               value={inputValue}
               placeholder="차량 번호 입력"
-              className="my-8 h-12 rounded-full pr-12"
+              className="my-8 h-12 rounded-full pr-12 pl-5"
               readOnly
             />
             <Button
@@ -51,7 +51,7 @@ export function Keypad() {
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
             <Button
               key={num}
-              className="h-14 text-2xl"
+              className="h-14 text-2xl transition-colors active:bg-primary/90 active:scale-95"
               onClick={() => handleNumberClick(num)}
             >
               {num}
@@ -59,12 +59,15 @@ export function Keypad() {
           ))}
           <Button variant="ghost" className="h-14" />
           <Button
-            className="h-14 text-2xl"
+            className="h-14 text-2xl transition-colors active:bg-primary/90 active:scale-95"
             onClick={() => handleNumberClick(0)}
           >
             0
           </Button>
-          <Button className="h-14 text-2xl" onClick={handleDelete}>
+          <Button
+            className="h-14 text-2xl transition-colors active:bg-primary/90 active:scale-95"
+            onClick={handleDelete}
+          >
             <Delete strokeWidth={1.5} className="scale-190" />
           </Button>
         </div>

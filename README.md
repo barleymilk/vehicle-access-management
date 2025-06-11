@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 차량 출입 관리 시스템 (Vehicle Access Management System)
 
-## Getting Started
+차량 출입을 효율적으로 관리하기 위한 웹 기반 시스템입니다. 등록/미등록 차량의 출입을 통합적으로 관리하고, VIP와 FREE PASS 기능을 지원합니다.
 
-First, run the development server:
+## 주요 기능
+
+- 통합 출입 관리 (등록/미등록 차량)
+- VIP 등급 관리 (가족/특별)
+- FREE PASS 지원
+- 실시간 모니터링
+- 미등록 차량 데이터 관리
+- 다양한 통계 및 보고서
+
+## 기술 스택
+
+- **Framework**: Next.js 15.3.3
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Radix UI
+- **State Management**: Zustand
+- **Database**: PostgreSQL (Supabase)
+- **Authentication**: NextAuth.js
+- **Icons**: Lucide React
+
+## 시작하기
+
+1. 환경 설정
+
+```bash
+# .env.local 파일 생성
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+NEXTAUTH_SECRET=your-auth-secret
+NEXTAUTH_URL=http://localhost:3000
+```
+
+2. 의존성 설치
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. 개발 서버 실행
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. 브라우저에서 [http://localhost:3000](http://localhost:3000) 접속
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 문서
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+프로젝트 문서는 `/docs` 폴더에서 확인할 수 있습니다:
 
-## Learn More
+- `PRD.md` - 제품 요구사항 정의서
+- `Database-Schema.md` - 데이터베이스 스키마
+- `User-Journey.md` - 사용자 여정
 
-To learn more about Next.js, take a look at the following resources:
+## 라이선스
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+이 프로젝트는 MIT 라이선스를 따릅니다.

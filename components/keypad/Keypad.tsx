@@ -25,7 +25,7 @@ export function Keypad() {
 
   return (
     <>
-      <div className="flex flex-col mx-6">
+      <div className="flex flex-col mx-6 pb-24">
         {/* 차량 번호 입력 Input 상자 */}
         <div className="flex gap-4">
           <div className="relative w-full">
@@ -74,8 +74,8 @@ export function Keypad() {
       </div>
 
       {/* 검색 버튼 */}
-      <div className="fixed bottom-0 left-0 right-0 bg-background p-4">
-        <Button className="w-full mx-auto h-14 text-xl font-semibold">
+      <div className="fixed bottom-0 left-0 right-0 bg-background/20 backdrop-blur-sm">
+        <Button className="h-14 my-4 mx-6 w-[calc(100%-3rem)] text-xl font-semibold">
           검색하기
         </Button>
       </div>

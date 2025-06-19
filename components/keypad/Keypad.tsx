@@ -4,9 +4,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { X, Delete } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function Keypad() {
   const [inputValue, setInputValue] = useState("");
+  const router = useRouter();
 
   const handleNumberClick = (num: number) => {
     // 입력값이 4자리 미만일 때만 추가
@@ -25,7 +27,7 @@ export function Keypad() {
 
   return (
     <>
-      <div className="flex flex-col mx-6 pb-24">
+      <div className="flex flex-col">
         {/* 차량 번호 입력 Input 상자 */}
         <div className="flex gap-4">
           <div className="relative w-full">
@@ -75,7 +77,10 @@ export function Keypad() {
 
       {/* 검색 버튼 */}
       <div className="fixed bottom-0 left-0 right-0 bg-background/20 backdrop-blur-sm">
-        <Button className="h-14 my-4 mx-6 w-[calc(100%-3rem)] text-xl font-semibold">
+        <Button
+          className="h-14 my-4 mx-6 w-[calc(100%-3rem)] text-xl font-semibold"
+          onClick={() => router.push("/search-info")}
+        >
           검색하기
         </Button>
       </div>

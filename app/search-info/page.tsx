@@ -215,7 +215,7 @@ function searchInfoPage() {
                         {info.label}
                       </TableCell>
                       <TableCell>
-                        <div className="bg-white/20 rounded-lg px-3 py-1 flex items-center gap-2">
+                        <div className="bg-white/40 rounded-lg px-3 py-1 flex items-center gap-2">
                           {info.label !== "정보 전달" && (
                             <span>{info.value}</span>
                           )}

@@ -33,8 +33,6 @@ export function AccessTable({ data, isLoading = false }: AccessTableProps) {
     );
   }
 
-  console.log("넘겨받은 데이터:", data);
-
   return (
     <div className="mt-8">
       <Table>

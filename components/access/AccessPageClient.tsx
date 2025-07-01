@@ -37,10 +37,7 @@ export function AccessPageClient() {
     setError(null);
 
     try {
-      console.log("Starting search with data:", searchData);
-
       const supabase = createClient();
-      console.log("Supabase client created");
 
       let query = supabase
         .from("AccessRecords")
@@ -48,22 +45,17 @@ export function AccessPageClient() {
         .order("entered_at", { ascending: false, nullsFirst: false })
         .range((page - 1) * itemsPerPage, page * itemsPerPage - 1);
 
-      console.log("Base query created");
-
       // 검색 조건 적용
       if (searchData.plateNumber) {
         query = query.ilike("raw_plate_number", `%${searchData.plateNumber}%`);
-        console.log("Added plate number filter:", searchData.plateNumber);
       }
 
       if (searchData.vehicleType) {
         query = query.ilike("raw_vehicle_type", `%${searchData.vehicleType}%`);
-        console.log("Added vehicle type filter:", searchData.vehicleType);
       }
 
       if (searchData.driverName) {
         query = query.ilike("raw_person_name", `%${searchData.driverName}%`);
-        console.log("Added driver name filter:", searchData.driverName);
       }
 
       if (searchData.driverCompany) {
@@ -71,7 +63,6 @@ export function AccessPageClient() {
           "driver_organization",
           `%${searchData.driverCompany}%`
         );
-        console.log("Added driver company filter:", searchData.driverCompany);
       }
 
       if (searchData.driverPhoneNumber) {
@@ -79,27 +70,18 @@ export function AccessPageClient() {
         query = query.or(
           `raw_person_phone.ilike.%${cleanPhoneNumber}%,raw_person_phone.ilike.%${searchData.driverPhoneNumber}%`
         );
-        console.log(
-          "Added driver phone filter:",
-          cleanPhoneNumber,
-          "or",
-          searchData.driverPhoneNumber
-        );
       }
 
       if (searchData.passengerName) {
         query = query.ilike("passengers", `%${searchData.passengerName}%`);
-        console.log("Added passenger name filter:", searchData.passengerName);
       }
 
       if (searchData.visitPurpose) {
         query = query.ilike("purpose", `%${searchData.visitPurpose}%`);
-        console.log("Added visit purpose filter:", searchData.visitPurpose);
       }
 
       if (searchData.specialNote) {
         query = query.ilike("notes", `%${searchData.specialNote}%`);
-        console.log("Added special note filter:", searchData.specialNote);
       }
 
       if (searchData.accessStartDate) {
@@ -109,12 +91,6 @@ export function AccessPageClient() {
         // UTC로 변환 (한국 시간 + 9시간)
         const utcStartDate = new Date(startDate.getTime() + 9 * 60 * 60 * 1000);
         query = query.gte("entered_at", utcStartDate.toISOString());
-        console.log(
-          "Added start date filter (KST):",
-          startDate.toLocaleString("ko-KR", { timeZone: "Asia/Seoul" }),
-          "-> UTC:",
-          utcStartDate.toISOString()
-        );
       }
 
       if (searchData.accessEndDate) {
@@ -124,29 +100,13 @@ export function AccessPageClient() {
         // UTC로 변환 (한국 시간 + 9시간)
         const utcEndDate = new Date(endDate.getTime() + 9 * 60 * 60 * 1000);
         query = query.lte("entered_at", utcEndDate.toISOString());
-        console.log(
-          "Added end date filter (KST):",
-          endDate.toLocaleString("ko-KR", { timeZone: "Asia/Seoul" }),
-          "-> UTC:",
-          utcEndDate.toISOString()
-        );
       }
 
-      console.log("Executing query...");
       const { data: result, error, count } = await query;
-      console.log("Query result:", { data: result, error, count });
 
       if (error) {
-        console.error("Supabase error details:", {
-          message: error.message,
-          code: error.code,
-          details: error.details,
-          hint: error.hint,
-        });
-
         // 테이블이 존재하지 않는 경우 임시 데이터 사용
         if (error.code === "42P01") {
-          console.log("Table does not exist, using mock data");
           const mockData: AccessRecord[] = [
             {
               id: 1,
@@ -207,14 +167,10 @@ export function AccessPageClient() {
           setTotalCount(0);
         }
       } else {
-        console.log("Setting data:", result);
         setData(result || []);
         setTotalCount(count || 0);
       }
     } catch (err) {
-      console.error("Unexpected error:", err);
-      console.error("Error type:", typeof err);
-      console.error("Error stringified:", JSON.stringify(err, null, 2));
       setError(
         `예상치 못한 오류가 발생했습니다: ${err instanceof Error ? err.message : String(err)}`
       );

@@ -2,6 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { FixedBottomButton } from "@/components/ui/fixed-bottom-button";
 import { X, Delete } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -76,14 +77,9 @@ export function Keypad() {
       </div>
 
       {/* 검색 버튼 */}
-      <div className="fixed bottom-0 left-0 right-0 bg-background/20 backdrop-blur-sm">
-        <Button
-          className="h-14 my-4 mx-6 w-[calc(100%-3rem)] text-xl font-semibold"
-          onClick={() => router.push("/search-info")}
-        >
-          검색하기
-        </Button>
-      </div>
+      <FixedBottomButton onClick={() => router.push("/search-info")}>
+        검색하기
+      </FixedBottomButton>
     </>
   );
 }

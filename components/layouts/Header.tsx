@@ -76,7 +76,7 @@ function Header({ back = false, title = "차량 번호 검색" }: HeaderProps) {
                 <SheetClose asChild>
                   <Button
                     className="h-12 font-semibold"
-                    onClick={() => handleNavigation("/records")}
+                    onClick={() => handleNavigation("/access")}
                   >
                     출입 기록 DB
                   </Button>

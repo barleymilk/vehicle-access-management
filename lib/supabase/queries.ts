@@ -87,7 +87,7 @@ export async function getAccessRecords(
   const { data, error } = await query;
 
   if (error) {
-    console.error("Error fetching access records:", error);
+    // console.error("Error fetching access records:", error);
     throw new Error("Failed to fetch access records");
   }
 

@@ -10,7 +10,7 @@ interface ClearableInputProps {
   label: string;
   placeholder?: string;
   value: string;
-  onChange: (value: string) => void;
+  onChange: (inputValue: string) => void;
   type?: "text" | "number" | "email" | "tel";
   disabled?: boolean;
   required?: boolean;
@@ -32,7 +32,7 @@ export function ClearableInput({
 
   return (
     <div className="flex gap-2 mb-2">
-      <Label htmlFor={id} className="w-22 flex-shrink-0 text-md">
+      <Label htmlFor={id} className="w-22 flex-shrink-0 text-md font-semibold">
         {label}
         {required && "*"}
       </Label>

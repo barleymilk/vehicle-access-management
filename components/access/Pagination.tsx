@@ -5,7 +5,7 @@ interface PaginationProps {
   currentPage: number;
   totalCount: number;
   itemsPerPage: number;
-  onPageChange: (page: number) => void;
+  onPageChange: (pageNumber: number) => void;
   isLoading?: boolean;
 }
 

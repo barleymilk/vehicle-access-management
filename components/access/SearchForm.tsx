@@ -26,7 +26,7 @@ export interface SearchFormData {
 }
 
 interface SearchFormProps {
-  onSearch: (data: SearchFormData) => void;
+  onSearch: (searchData: SearchFormData) => void;
   isLoading?: boolean;
 }
 

@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button";
 import { FixedBottomButton } from "@/components/ui/fixed-bottom-button";
 import { X, Delete } from "lucide-react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
-export function Keypad() {
+export function Keypad({
+  onSearch,
+}: {
+  onSearch: (plateNumber: string) => void;
+}) {
   const [inputValue, setInputValue] = useState("");
-  const router = useRouter();
 
   const handleNumberClick = (num: number) => {
     // 입력값이 4자리 미만일 때만 추가
@@ -24,6 +26,10 @@ export function Keypad() {
 
   const handleClear = () => {
     setInputValue("");
+  };
+
+  const handleSearch = () => {
+    onSearch(inputValue);
   };
 
   return (
@@ -60,7 +66,12 @@ export function Keypad() {
               {num}
             </Button>
           ))}
-          <Button variant="ghost" className="h-14" />
+          <Button
+            className="h-14 text-lg font-bold transition-colors active:bg-primary/90 active:scale-95"
+            onClick={() => onSearch("기타")}
+          >
+            기타
+          </Button>
           <Button
             className="h-14 text-2xl transition-colors active:bg-primary/90 active:scale-95"
             onClick={() => handleNumberClick(0)}
@@ -77,9 +88,7 @@ export function Keypad() {
       </div>
 
       {/* 검색 버튼 */}
-      <FixedBottomButton onClick={() => router.push("/search-info")}>
-        검색하기
-      </FixedBottomButton>
+      <FixedBottomButton onClick={handleSearch}>검색하기</FixedBottomButton>
     </>
   );
 }

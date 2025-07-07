@@ -19,8 +19,11 @@ export function DisabledInput({
   required = false,
 }: DisabledInputProps) {
   return (
-    <div className="flex gap-2 mb-6">
-      <Label htmlFor={id} className="w-22 flex-shrink-0 text-md font-semibold">
+    <div className="flex gap-2 mb-2">
+      <Label
+        htmlFor={id}
+        className="w-22 flex-shrink-0 text-md font-semibold text-gray-500"
+      >
         {label}
         {required && "*"}
       </Label>
@@ -28,7 +31,7 @@ export function DisabledInput({
         disabled
         type="text"
         id={id}
-        placeholder={placeholder}
+        // placeholder={placeholder}
         value={value}
         className="rounded-full"
       />

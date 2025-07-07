@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Driver, Vehicle } from "@/lib/types";
 import { ClearableInput } from "@/components/ui/clearable-input";
 import { DisabledInput } from "@/components/ui/disabled-input";
@@ -26,11 +26,21 @@ export const AccessRecordForm = ({
   const [isLoading, setIsLoading] = useState(false);
 
   // 차량 정보 그룹: plate_number 또는 vehicle_type 중 하나라도 값이 있으면 true
-  const hasVehicleInfo = plateNumber.trim() || carType.trim();
+  const hasVehicleInfo = useMemo(() => {
+    return (
+      (vehicle?.plate_number || "").trim() ||
+      (vehicle?.vehicle_type || "").trim()
+    );
+  }, []);
 
   // 운전자 정보 그룹: driverName, driverAffiliation, driverNumber 중 하나라도 값이 있으면 true
-  const hasDriverInfo =
-    driverName.trim() || driverAffiliation.trim() || driverNumber.trim();
+  const hasDriverInfo = useMemo(() => {
+    return (
+      (driver?.name || "").trim() ||
+      (driver?.org_dept_pos || "").trim() ||
+      (driver?.phone || "").trim()
+    );
+  }, []);
 
   const handleSave = async () => {
     // 필수 필드 검증
@@ -95,7 +105,7 @@ export const AccessRecordForm = ({
               <DisabledInput
                 id="car-number"
                 label="차량번호"
-                placeholder="01가1234"
+                placeholder="01가1234 or 기타 or 도보"
                 value={plateNumber}
                 required
               />
@@ -111,7 +121,7 @@ export const AccessRecordForm = ({
               <ClearableInput
                 id="car-number"
                 label="차량번호"
-                placeholder="01가1234"
+                placeholder="01가1234 or 기타 or 도보"
                 value={plateNumber}
                 onChange={() => {
                   // 차량번호는 props로 받아오는 값이므로 수정 불가
@@ -130,7 +140,7 @@ export const AccessRecordForm = ({
             </>
           )}
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col">
           {hasDriverInfo ? (
             <>
               <DisabledInput

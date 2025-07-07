@@ -117,11 +117,11 @@ export function VehicleInfoCard({
   const vehicleInfo: InfoItem[] = [
     {
       label: "차량번호",
-      value: vehicle.plate_number || "정보 없음",
+      value: vehicle.plate_number || "-",
     },
     {
       label: "차량종류",
-      value: vehicle.vehicle_type || "정보 없음",
+      value: vehicle.vehicle_type || "-",
     },
     {
       label: "공용차량",
@@ -129,11 +129,11 @@ export function VehicleInfoCard({
     },
     {
       label: "접근기간",
-      value: vehicle.access_period || "정보 없음",
+      value: vehicle.access_period || "-",
     },
     {
       label: "특이사항",
-      value: vehicle.note || "정보 없음",
+      value: vehicle.note || "-",
     },
   ];
 
@@ -165,37 +165,37 @@ export function VehicleInfoCard({
   const driverInfo: InfoItem[] = [
     {
       label: "소유주",
-      value: driver?.name || "정보 없음",
+      value: driver?.name || "-",
       tags: driverVipLevel ? [driverVipLevel] : undefined,
     },
     {
       label: "소속",
-      value: driver?.organization || "정보 없음",
+      value: driver?.organization || "-",
     },
     {
       label: "부서",
-      value: driver?.department || "정보 없음",
+      value: driver?.department || "-",
     },
     {
       label: "직급",
-      value: driver?.position || "정보 없음",
+      value: driver?.position || "-",
     },
     {
       label: "연락처",
-      value: driver?.phone || "정보 없음",
+      value: driver?.phone || "-",
     },
     {
       label: "활동기간",
-      value: driver?.activity_period || "정보 없음",
+      value: driver?.activity_period || "-",
     },
     {
       label: "담당자명",
-      value: driver?.contact_person_name || "정보 없음",
-      tags: [{ text: "직원", variant: "default" as BadgeVariant }],
+      value: driver?.contact_person_name || "-",
+      // tags: [{ text: "직원", variant: "default" as BadgeVariant }],
     },
     {
       label: "담당자번호",
-      value: driver?.contact_person_phone || "정보 없음",
+      value: driver?.contact_person_phone || "-",
     },
   ];
 
@@ -221,11 +221,11 @@ export function VehicleInfoCard({
                 <TableBody>
                   {vehicleInfo.map((info) => (
                     <TableRow key={info.label} className="border-0">
-                      <TableCell className="font-semibold">
+                      <TableCell className="font-semibold w-24">
                         {info.label}
                       </TableCell>
                       <TableCell>
-                        <div className="bg-white/40 rounded-lg px-3 py-1 flex items-center gap-2">
+                        <div className="bg-black/5 rounded-lg px-3 py-1 flex items-center gap-2">
                           {info.value}
                         </div>
                       </TableCell>
@@ -267,11 +267,11 @@ export function VehicleInfoCard({
                 <TableBody>
                   {driverInfo.map((info) => (
                     <TableRow key={info.label} className="border-0">
-                      <TableCell className="font-semibold">
+                      <TableCell className="font-semibold w-24">
                         {info.label}
                       </TableCell>
                       <TableCell>
-                        <div className="bg-white/40 rounded-lg px-3 py-1 flex items-center gap-2">
+                        <div className="bg-black/5 rounded-lg px-3 py-1 flex items-center gap-2">
                           <span>{info.value}</span>
                           {info.tags && (
                             <div className="flex gap-1">
@@ -304,11 +304,11 @@ export function VehicleInfoCard({
                 <TableBody>
                   {workInfo.map((info) => (
                     <TableRow key={info.label} className="border-0">
-                      <TableCell className="font-semibold">
+                      <TableCell className="font-semibold w-24">
                         {info.label}
                       </TableCell>
                       <TableCell>
-                        <div className="bg-white/40 rounded-lg px-3 py-1 flex items-center gap-2">
+                        <div className="bg-black/5 rounded-lg px-3 py-1 flex items-center gap-2">
                           {info.label !== "정보 전달" && (
                             <span>{info.value}</span>
                           )}
@@ -340,6 +340,8 @@ export function VehicleInfoCard({
           onClick={() => {
             if (driver) {
               handleSelectDriver(driver);
+              onGoToForm();
+            } else {
               onGoToForm();
             }
           }}

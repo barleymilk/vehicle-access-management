@@ -50,6 +50,14 @@ export default function Home() {
 
   // 1. 차량번호 검색 -> 차량 데이터 배열
   const handleSearch = async (plateNumber: string) => {
+    if (plateNumber.length === 0) {
+      setVehicleResults([]);
+      setSelectedVehicle(null);
+      setSelectedDriverArray(null);
+      setSelectedDriver(null);
+      setMode("form");
+      return;
+    }
     const results = await searchVehicles(plateNumber);
     setVehicleResults(results);
     setSelectedVehicle(null);
